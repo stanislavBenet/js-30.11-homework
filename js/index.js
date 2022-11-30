@@ -14,11 +14,10 @@
 
 class RangeValidator {
   /**
-   *
    * @param {number} from
    * @param {number} to
    */
-  constructor(from = 0, to = 1) {
+  constructor(from = 0, to = 10) {
     this.from = from;
     this.to = to;
   }
@@ -63,15 +62,15 @@ class RangeValidator {
    * @param {number} num
    */
   validate(num) {
-    return this._num >= this._from && this._num <= this._to;
+    return num>= this._from && num <= this._to;
   }
 }
 
 try {
-  const value = new RangeValidator(11, 5);
+  const value = new RangeValidator();
   console.log(value);
   console.log(value.getRange());
-  console.log(value.validate("qwe"));
+  console.log(value.validate());
 } catch (error) {
   console.log(error);
 }
