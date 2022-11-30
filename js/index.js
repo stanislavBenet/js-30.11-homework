@@ -25,6 +25,9 @@ class RangeValidator {
     return this._to;
   }
   set to(to) {
+     if (to < this._from) {
+       throw new RangeError("To must be more than to");
+     }
     if (typeof to !== "number") {
       throw new TypeError("To must be a number ");
     }
@@ -34,15 +37,20 @@ class RangeValidator {
   get from() {
     return this._from;
   }
+
   set from(from) {
     if (from > this._to) {
       throw new RangeError("From must be less than to");
     }
+
     if (typeof from !== "number") {
       throw new TypeError("From must be a number ");
     }
+    
     this._from = from;
   }
+ 
+    
 
   get range() {
     let rangeArray = [this._from, this._to];
@@ -61,7 +69,7 @@ class RangeValidator {
 }
 
 try {
-  const value = new RangeValidator(10,1);
+  const value = new RangeValidator(3,5);
   console.log(value);
   console.log(value.range);
   console.log(value.validate(2));
